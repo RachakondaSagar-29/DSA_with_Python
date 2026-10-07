@@ -97,3 +97,67 @@ def merge_sort(arr):
     return sorted_arr
 
 print(merge_sort(A))
+
+# quick sort
+# time : O(n log n) if you find good pivot
+# if not O(n^2) 
+# space: O(n)
+
+def quick_sort(arr):
+    if len(arr)<=1:
+        return arr
+    
+    P=arr[-1]
+    L=[x for x in arr[:-1] if x <= P]
+    R=[x for x in arr[:-1] if x > P ]
+
+    L=quick_sort(L)
+    R=quick_sort(R)
+
+    return L + [P] + R
+print(quick_sort(A))
+
+
+#counting sort 
+# time : O(n+k) where k is the range of data
+# space: O(K)
+# this is only on positive numbers
+B=[3,6,8,3,5,2,3,7,2,6,7,4,9,5,7]
+def counting_sort(arr):
+    n=len(arr)
+    maxx=max(arr)
+    counts=[0]*(maxx+1)
+
+    for x in arr:
+        counts[x] += 1
+    i=0
+    for c in range(maxx+1):
+        while counts[c] > 0:
+            arr[i]=c 
+            i +=1
+            counts[c] -=1
+    return arr
+
+print(counting_sort(B))
+
+
+# usually do in practise
+# time complexity is O(n log n) from using Tim sort 
+
+# Inplace (constant space)
+
+B.sort()
+print(B)
+
+# get sorted arry-O(n) space
+ 
+sorted_B=sorted(B)
+print(B)
+
+# # ## sorted array of tuples
+
+I=[(-5,6),(2,3),(9,1),(5,7),(-7,4),(-4,6)]  # instervals
+
+sorted_I=sorted(I,key= lambda t:t[1]) # t[0]--first palce of tuple t[1]--second place of tuple ,, if you put -t[0] it will sort reverse
+
+print(sorted_I)
